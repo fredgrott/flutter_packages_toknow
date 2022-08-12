@@ -17,6 +17,10 @@ import 'package:flutter/scheduler.dart';
 
 final Brightness appBrightness = SchedulerBinding.instance.window.platformBrightness;
 
+late bool appIsDarkMode;
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 final ThemeData appLightThemeData = FlexColorScheme.light(
   useMaterial3: kAppFCSUseMaterial3,
   colors: appLightScheme,

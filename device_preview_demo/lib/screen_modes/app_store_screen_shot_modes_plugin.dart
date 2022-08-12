@@ -7,13 +7,13 @@ import 'dart:io';
 import 'package:device_preview/device_preview.dart';
 import 'package:device_preview_demo/app_home.dart';
 
+import 'package:device_preview_demo/screen_modes/set_custom_ios_devices.dart';
+import 'package:device_preview_demo/themes/app_theme_data.dart';
 
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
 import 'package:screenshot_modes/screenshot_modes.dart';
-
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 // Execution sequence of chained modes:
 //
@@ -106,6 +106,57 @@ final _devices = [
     function: _setToIPhoneSE,
     label: 'iPhoneSE',
     modes: _setLandscapePortrait,
+  ),
+  ItemScreenMode(
+    // dummy as to keep my logic the same for default devices defined in devie preview
+    function: (context) async {
+      final store = DevicePreviewHelper.getDevicePreviewStore(context);
+      //store.enableCustomDevice();
+      //store.updateCustomDevice(SetCustomDevices.iphone11ProMax);
+      //store.deviceInfo.canRotate;
+    },
+    label: "iphone11ProMax",
+    modes: _setLandscapePortraitIPhone11ProMax,
+  ),
+  ItemScreenMode(
+    // dummy as to keep my logic the same for default devices defined in devie preview
+    function: (context) async {
+      final store = DevicePreviewHelper.getDevicePreviewStore(context);
+      //store.enableCustomDevice();
+      //store.updateCustomDevice(SetCustomDevices.iphone8Plus);
+
+      //store.deviceInfo.canRotate;
+    },
+    label: "iphone8Plus",
+    modes: _setLandscapePortraitIPhone8Plus,
+  ),
+];
+
+// ignore: prefer-correct-identifier-length
+final _setLandscapePortraitIPhone11ProMax = [
+  ItemScreenMode(
+    function: _setToIphone11ProMaxPortrait,
+    label: "iphone11ProMaxPortrait",
+    modes: _setPages,
+  ),
+  ItemScreenMode(
+    function: _setToIphone11ProMaxLandscape,
+    label: "iphone11ProMaxLandscape",
+    modes: _setPages,
+  ),
+];
+
+// ignore: prefer-correct-identifier-length
+final _setLandscapePortraitIPhone8Plus = [
+  ItemScreenMode(
+    function: _setToIphone8PlusPortrait,
+    label: "iphone8PlusPortrait",
+    modes: _setPages,
+  ),
+  ItemScreenMode(
+    function: _setToIphone8PlusLandscape,
+    label: "iphone8PlusLandscape",
+    modes: _setPages,
   ),
 ];
 
@@ -304,4 +355,28 @@ Future<String> _saveScreenShot(DeviceScreenshotWithLabel screen) async {
   await imageFile.writeAsBytes(screen.deviceScreenshot.bytes);
 
   return '$path saved'; // message printed to device preview plugins windows;
+}
+
+Future<void> _setToIphone11ProMaxPortrait(BuildContext context) async {
+  final store = DevicePreviewHelper.getDevicePreviewStore(context);
+  store.enableCustomDevice();
+  store.updateCustomDevice(SetCustomIosDevices.iphone11ProMaxPortrait);
+}
+
+Future<void> _setToIphone11ProMaxLandscape(BuildContext context) async {
+  final store = DevicePreviewHelper.getDevicePreviewStore(context);
+  store.enableCustomDevice();
+  store.updateCustomDevice(SetCustomIosDevices.iphone11ProMaxLandscape);
+}
+
+Future<void> _setToIphone8PlusPortrait(BuildContext context) async {
+  final store = DevicePreviewHelper.getDevicePreviewStore(context);
+  store.enableCustomDevice();
+  store.updateCustomDevice(SetCustomIosDevices.iphone8PlusPortrait);
+}
+
+Future<void> _setToIphone8PlusLandscape(BuildContext context) async {
+  final store = DevicePreviewHelper.getDevicePreviewStore(context);
+  store.enableCustomDevice();
+  store.updateCustomDevice(SetCustomIosDevices.iphone8PlusLandscape);
 }

@@ -5,7 +5,7 @@
 
 import 'package:device_preview/device_preview.dart';
 import 'package:device_preview_demo/app_home.dart';
-import 'package:device_preview_demo/screen_modes/app_store_screen_shot_modes_plugin.dart';
+
 import 'package:device_preview_demo/themes/app_theme_data.dart';
 
 import 'package:flutter/material.dart';

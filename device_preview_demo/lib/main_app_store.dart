@@ -24,7 +24,8 @@ void main() {
         ...DevicePreview.defaultTools,
         appStoreScreenShotModesPlugin,
       ],
-      
+      defaultDevice: Devices.ios.iPhone12ProMax,
+      storage: DevicePreviewStorage.none(),
       
 
     ),
