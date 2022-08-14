@@ -67,6 +67,8 @@ void main() {
         "Has Add Button, Tappable",
         (WidgetTester tester) async {
           final logger = LoggerMock();
+          // need to use debugMockDependency as the StateNotifier has one dependency i.e. AppLogger is not
+          // dependency then we could use debugUpdate method here.
           final myNotifier = MyStateNotifier()
             ..debugMockDependency<AppLogger>(logger);
 
@@ -97,6 +99,7 @@ void main() {
 
         },
       );
+
     },
   );
 
